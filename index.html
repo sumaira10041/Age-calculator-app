@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Age calculator app</title>
+  <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+  min-height:100vh;
+  background:hsl(0, 0%, 94%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.calender{
+  height:500px;
+  width:700px;
+  background:hsl(0, 0%, 100%);
+  border-radius:25px;
+  border-bottom-right-radius:173px;
+}
+.dates {
+  display:flex;
+  justify-content:space-around;
+}
+.dates span{
+  flex:1;
+  margin-top:45px;
+}
+.dates p{
+  margin-bottom:-10px;
+  font-family:'Poppins', sans-serif;
+  font-weight:800;
+  color:hsl(0, 1%, 44%);
+  font-size:12px;
+  letter-spacing:3px;
+}
+.dates input{
+  width:120px;
+  height:50px;
+  border-radius:5px;
+  padding-left:17px;
+  font-size:25px;
+  font-family:'Poppins', sans-serif;
+  font-weight:700;
+}
+.dates input:hover{
+  border:2px solid hsl(259, 100%, 65%);
+}
+hr{
+  width:510px;
+  margin-top:50px;
+  margin-left:50px;
+}
+.icon{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:75px;
+  width:74px;
+  background:hsl(259, 100%, 65%);
+  margin-top:-43px;
+  margin-left:562px;
+  border-radius:50px;
+  border:none;
+  cursor:pointer;
+}
+.icon img{
+  background:hsl(259, 100%, 65%);
+}
+.num{
+  display:inline-block;
+}
+.num span{
+  display:inline-block;
+  margin-left:60px;
+}
+.num p{
+  display:inline-block;
+  width:87px;
+  font-size:70px;
+  color:hsl(259, 100%, 65%);;
+}
+.num span h1{
+  display:inline-block;
+  margin-bottom:-30px;
+  font-size:62px;
+  font-family:'Poppins', sans-serif;
+  font-weight:900;
+}
+@media screen and (max-width:700px){
+  .calender{
+    width:360px;
+  }
+  .dates{
+    margin-left:199px;
+  }
+  hr{
+    width:319px;
+  }
+  .icon{
+    margin-left:167px;
+  }
+  .num span h1{
+    font-size:32px;
+  }
+}
+</style>
+</head>
+<body>
+<section class="main">
+  <div class="calender">
+    <div class="dates">
+    <span style="margin-left:47px;"><p>DAY</p><br>
+    <input type="number" name="" id="day" placeholder="DD"></span>
+    <span style="margin-left:5px;"><p>MONTH</p><br>
+    <input type="number" name="" id="month" placeholder="MM"></span>
+    <span style="margin-right:237px;"><p>YEAR</p><br>
+    <input type="number" name="" id="year" placeholder="YYYY"></span>
+    </div>
+    <hr><div><button class="icon" type="submit" onclick="age()"><img src="icon-arrow.svg"></div></button>
+    <div class="num">
+      <span><p id="result-year">--</p>
+      <h1>years</h1></span><br>
+      <span><p id="result-month">--</p>
+      <h1>months</h1></span><br>
+      <span><p id="result-day">--</p>
+      <h1>days</h1></span>
+    </div>
+  </div>
+</section>
+<script>
+   function age(){
+  var d1=document.getElementById('day').value
+  var m1=document.getElementById('month').value
+  var y1=document.getElementById('year').value
+  var day=new Date()
+  var d2=day.getDate() 
+  var m2=1+day.getMonth()
+  var y2=day.getFullYear()
+  var month=[31,28,31,30,31,30,31,31,30,31,30,31]
+  if (d1>d2) {
+    d2=d2+month[m2-1]
+    m2=m2-1
+  }
+  if (m1>m2) {
+    m2=m2+12
+    y2=y2-1
+  }
+  var d=d2-d1
+  var m=m2-m1
+  var y=y2-y1
+  document.getElementById('result-year').innerHTML="" + y;
+  document.getElementById('result-month').innerHTML="" + m;
+  document.getElementById('result-day').innerHTML="" + d;
+}
+</script>
+</body>
+</html>
